@@ -47,14 +47,16 @@ class AuthRepository {
 //header isliye taki bta paye ki req body json format mei hi hai accept krlo bindaas
         var res = await _client.post(Uri.parse('$host/api/signup'),
             body: userAcc.toJson(),
-            headers: {'Content-Type': 'application/json; charset=UTR-8'});
+            headers: {'Content-Type': 'application/json; charset=UTF-8'});
         switch (res.statusCode) {
           //user signup krne ke baad uski id mongoDb bnayga aur response mei bhejdega jisko tumko leke uss user ke model mei daalna hai
           case 200:
             //jsonDecode()...res string ke form mei hai to usko json bna dia taki alg se key aur value access kr paye
             //res se uid leke model mei daldi
-            final newUser =
-                userAcc.copyWith(uid: jsonDecode(res.body)['user']['_id']);
+            //res se token nikalkr model mei daaldia
+            final newUser = userAcc.copyWith(
+                uid: jsonDecode(res.body)['user']['_id'],
+                token: jsonDecode(res.body)['token']);
             error = ErrorModel(error: null, data: newUser);
             break;
         }

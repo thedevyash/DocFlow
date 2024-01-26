@@ -1,8 +1,11 @@
 const express =require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
+const cors = require("cors");
 const PORT=process.env.PORT | 3001;
 const app =express();
+
+app.use(cors());
 //har file ko lake index.js mei bhi dalo app.use() ka use kro
 //middleware hai ye dono...data ko server jne se pehle hi manipulate krte
 //data ko json format mei krke bhejo server pe

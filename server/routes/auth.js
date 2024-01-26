@@ -1,7 +1,10 @@
 
 //nodeJS ki import lines aisi hote hai
 const express=require("express");
+//chahte to uid se bhi krlete magar hacker wgera local storage se uid nikalkr info le skte isliye jwt use krre security rhegi
+const jwt=require("jsonwebtoken");
 const User = require("../models/user");
+const auth = require("../middlewares/auth");
 
 //express use krne ke liye uska instance bn dia authRouter
 const authRouter=express.Router();
@@ -34,12 +37,25 @@ if(!user){
     //user ko wapis asign isliye krre kyuki mongoDB ek id return krta hai bnakr jiska use hum krenge identify krne mei isliye wais se save krliye
     user=await user.save();
 }
+//jwt is like a wrapper which gives us random generated token 
+//id pass krdi
+//passwordKey ek key h jo ki password access krne mei help kregi yani ki jwt ko ccess krne mei
+const token= jwt.sign({id:user._id},"passwordKey");
 //return data to client side
-res.json({user:user});
+res.json({user:user,token:token});
 
 }catch(e){
 res.status(500).json({error:e.message});
 }
+});
+//get the user ke liye route
+//auth ek middleware hai
+authRouter.get('/',auth,async(req,res)=>{
+    //user verify ho chuka hai aur ab uss id ke user ki info server se uthao aur leke client pr jao
+    //req.user mei user ki id hai jo verify kia auth middleware mei
+    const user = await User.findbyId(req.user);
+    res.json({user,token:req.token});
+
 });
 
 module.exports=authRouter;

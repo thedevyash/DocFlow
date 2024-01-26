@@ -9,5 +9,6 @@ nodemon ko dev dependencies mei daaldo fir bar baar run ni krna pdega
 mongoose mongoDB se connect krna esy krdeta hai save wgera jaise functions deke
 
 
+auth.js mei signup krte wqt ek JWT bnega
 
-AxauyufrrI2wmJ7I
+database ka password=AxauyufrrI2wmJ7I
