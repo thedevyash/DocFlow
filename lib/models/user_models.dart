@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-//structure hote hai models
 class UserModel {
   final String email;
   final String name;
   final String profilePic;
   final String uid;
   final String token;
-
   UserModel({
     required this.email,
     required this.name,
@@ -17,7 +15,7 @@ class UserModel {
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'email': email,
       'name': name,
       'profilePic': profilePic,
@@ -28,18 +26,18 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      email: map['email'] as String,
-      name: map['name'] as String,
-      profilePic: map['profilePic'] as String,
-      uid: map['_id'] as String,
-      token: map['token'] as String,
+      email: map['email'] ?? '',
+      name: map['name'] ?? '',
+      profilePic: map['profilePic'] ?? '',
+      uid: map['_id'] ?? '',
+      token: map['token'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+      UserModel.fromMap(json.decode(source));
 
   UserModel copyWith({
     String? email,

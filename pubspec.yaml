@@ -38,7 +38,9 @@ dependencies:
   google_sign_in: ^6.1.6
   flutter_riverpod: ^2.4.9
   http: ^0.13.5
-  json_serializable: 
+  json_serializable:
+  shared_preferences: ^2.2.2
+  routemaster:
 
 dev_dependencies:
   flutter_test:

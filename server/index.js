@@ -2,6 +2,7 @@ const express =require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
 const cors = require("cors");
+const documentRouter = require("./routes/document");
 const PORT=process.env.PORT | 3001;
 const app =express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 //middleware hai ye...bar bar req bnane se ach hai ek alg file bna lo sari routes ke liye aur unko index file mei import krlo app.use() use krke
 app.use(authRouter);
+app.use(documentRouter);
 
 
 

@@ -53,7 +53,7 @@ res.status(500).json({error:e.message});
 authRouter.get('/',auth,async(req,res)=>{
     //user verify ho chuka hai aur ab uss id ke user ki info server se uthao aur leke client pr jao
     //req.user mei user ki id hai jo verify kia auth middleware mei
-    const user = await User.findbyId(req.user);
+    const user = await User.findById(req.user);
     res.json({user,token:req.token});
 
 });
