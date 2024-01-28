@@ -72,7 +72,6 @@ class DocumentRepository {
       );
       switch (res.statusCode) {
         case 200:
-          //list bana di documents ki kyuki resmei list hogi docs ki
           List<DocumentModel> documents = [];
 
           for (int i = 0; i < jsonDecode(res.body).length; i++) {
